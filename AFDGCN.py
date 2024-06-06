@@ -1505,8 +1505,8 @@ class GArnoldi_prop(MessagePassing):
 class GARNOLDI(torch.nn.Module):
     def __init__(self, num_node, input_dim, output_dim, hidden, cheb_k, num_layers, embed_dim):
         super(GARNOLDI, self).__init__()
-        self.lin1 = Linear(1216, 1)
-        self.lin2 = Linear(1, 1216)
+        self.lin1 = Linear(235776,64) 
+        self.lin2 = Linear(64,235776)
         self.prop1 = GArnoldi_prop(cheb_k, 0.1, args.ArnoldiInit, args.FuncName, False,
                                        False, 0.000001, 2.0, None)
 
@@ -1571,7 +1571,7 @@ class GARNOLDI(torch.nn.Module):
 ####################################################################
 def read_edge_list_csv():
     # Read the CSV file into a DataFrame
-    df = pd.read_csv('/content/AFDGCN_BerNet/data/PEMS04/conn_graph.csv')
+    df = pd.read_csv('/content/AFDGCN_BerNet/data/PEMS04/PEMS04.csv')
 
     # Extract the 'from' and 'to' columns as numpy arrays
     edges_from = df['from'].to_numpy()
